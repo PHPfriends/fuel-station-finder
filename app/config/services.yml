@@ -33,3 +33,14 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+
+    AppBundle.command.FetchData:
+        class: AppBundle\Command\FetchDataCommand
+        arguments:
+            - "@app.services.extract_fuel_price"
+        tags:
+            - { name: console.command }
+
+    app.services.extract_fuel_price:
+        class: AppBundle\Services\ExtractFuelPrice
+        public: true
