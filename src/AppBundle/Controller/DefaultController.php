@@ -33,7 +33,7 @@ class DefaultController extends FOSRestController
                 }
             }
 
-            return false;
+            return new \stdClass();
         };
 
         $result = get_object_vars($findBy($latitud, $longitud));
