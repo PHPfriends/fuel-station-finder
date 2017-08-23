@@ -81,6 +81,8 @@ nelmio_cors:
 
 # FOSRest Configuration
 fos_rest:
+    serializer:
+        serialize_null: true
     body_listener: true
     format_listener:
         rules:
