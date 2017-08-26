@@ -1,0 +1,58 @@
+class stdClass#578 (28) {
+    public $C.P. =>
+    string(5) "02510"
+    public $Dirección =>
+    string(42) "CL AVENIDA GENERALISIMO 107 (N-301 km 276)"
+    public $Horario =>
+    string(16) "L-D: 06:00-22:00"
+    public $Latitud =>
+    string(9) "38,803389"
+    public $Localidad =>
+    string(10) "POZO BUENO"
+    public $Longitud (WGS84) =>
+    string(9) "-1,731861"
+    public $Margen =>
+    string(1) "I"
+    public $Municipio =>
+    string(27) "Chinchilla de Monte-Aragón"
+    public $Precio Biodiesel =>
+    NULL
+    public $Precio Bioetanol =>
+    NULL
+    public $Precio Gas Natural Comprimido =>
+    NULL
+    public $Precio Gas Natural Licuado =>
+    NULL
+    public $Precio Gases licuados del petróleo =>
+    NULL
+    public $Precio Gasoleo A =>
+    string(5) "1,129"
+    public $Precio Gasoleo B =>
+    NULL
+    public $Precio Gasolina 95 Protección =>
+    string(5) "1,239"
+    public $Precio Gasolina  98 =>
+    string(5) "1,363"
+    public $Precio Nuevo Gasoleo A =>
+    string(5) "1,209"
+    public $Provincia =>
+    string(8) "ALBACETE"
+    public $Remisión =>
+    string(2) "OM"
+    public $Rótulo =>
+    string(6) "REPSOL"
+    public $Tipo Venta =>
+    string(1) "P"
+    public $% BioEtanol =>
+    string(3) "0,0"
+    public $% Éster metílico =>
+    string(3) "0,0"
+    public $IDEESS =>
+    string(4) "5196"
+    public $IDMunicipio =>
+    string(2) "78"
+    public $IDProvincia =>
+    string(2) "02"
+    public $IDCCAA =>
+    string(2) "07"
+  }

@@ -1,6 +1,8 @@
 <?php
 namespace AppBundle\Services;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 
 class ExtractFuelPrice
 {
@@ -16,35 +18,38 @@ class ExtractFuelPrice
 
     public function processData()
     {
-        $gA = 'Precio Gasoleo A';
+        $gA  = 'Precio Gasoleo A';
         $g95 = 'Precio Gasolina 95 Protección';
+        $g98 = 'Precio Gasolina  98';
+        $key = 'ListaEESSPrecio';
 
-        foreach($this->rowData as $key => $element){
-            if($key == 'ListaEESSPrecio'){
-                //Fuels stations level
-                $i = 0;
-                foreach($this->rowData->$key as $gasolinera) {
-                    foreach($gasolinera as $property => $value){
-                        /*switch ($property) {
-                            case $gA:
-                                $fuel = 'GA';
-                                break;
-                            case $g95:
-                                $fuel = 'G95';
-                                break;
-                        }*/
 
-                        if($property == $gA)
-                        {
-                            $fuel = 'GA';
-                            $this->buildArray($fuel, $i, $gasolinera, $gA);
-                            $i++;
-                        }elseif($property == $g95){
-                            $fuel = 'G95';
-                            $this->buildArray($fuel, $i, $gasolinera, $g95);
-                            $i++;
-                        }
-                    }
+        //Fuels stations level
+        $i = 0;
+        foreach($this->rowData->$key as $gasolinera) {
+            foreach($gasolinera as $property => $value){
+                /*switch ($property) {
+                    case $gA:
+                        $fuel = 'GA';
+                        break;
+                    case $g95:
+                        $fuel = 'G95';
+                        break;
+                }*/
+
+                if($property == $gA)
+                {
+                    $fuel = 'GA';
+                    $this->buildArray($fuel, $i, $gasolinera, $gA);
+                    $i++;
+                }elseif($property == $g95){
+                    $fuel = 'G95';
+                    $this->buildArray($fuel, $i, $gasolinera, $g95);
+                    $i++;
+                }elseif($property == $g98){
+                    $fuel = 'G98';
+                    $this->buildArray($fuel, $i, $gasolinera, $g98);
+                    $i++;
                 }
             }
         }
@@ -73,10 +78,11 @@ class ExtractFuelPrice
 
 
     public function save(){
-
+        $fs = new Filesystem();
         foreach($this->arrayByFuel as $key => $data){
             $ficheroFuel = "Fuel/$key.json";
-            file_put_contents($ficheroFuel, json_encode($this->arrayByFuel[$key]));
+            $fs->dumpFile($ficheroFuel, json_encode($this->arrayByFuel[$key]));
+            //file_put_contents($ficheroFuel, json_encode($this->arrayByFuel[$key]));
         }
 
     }
