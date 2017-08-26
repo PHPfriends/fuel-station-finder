@@ -79,6 +79,6 @@ class FetchDataCommand extends ContainerAwareCommand
         file_put_contents($ficheroFuel, json_encode($arrayByFuel95));*/
 
 
-        $output->writeln('Exportados en la Carpeta /File!');
+        $output->writeln('Exportados en la Carpeta Fuel!');
     }
 }
