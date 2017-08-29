@@ -79,12 +79,33 @@ class ExtractFuelPrice
 
     public function save(){
         $fs = new Filesystem();
+        $this->crateFolderIfNotExists();
         foreach($this->arrayByFuel as $key => $data){
-            $ficheroFuel = "Fuel/$key.json";
+            $ficheroFuel = $this->getUploadedRootDir(). "/$key.json";
             $fs->dumpFile($ficheroFuel, json_encode($this->arrayByFuel[$key]));
             //file_put_contents($ficheroFuel, json_encode($this->arrayByFuel[$key]));
         }
 
+    }
+
+    protected function getUploadDir()
+    {
+        return "Fuel";
+    }
+
+    protected function getUploadedRootDir()
+    {
+        return __DIR__ . '/../../../web/' . $this->getUploadDir();
+    }
+
+    protected function crateFolderIfNotExists(){
+        $fs = new Filesystem();
+
+        try {
+            $fs->mkdir($this->getUploadedRootDir());
+        } catch (IOExceptionInterface $e) {
+            echo "An error occurred while creating your directory at ".$e->getPath();
+        }
     }
 
 }
