@@ -9,8 +9,9 @@ use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use FOS\RestBundle\View\View;
+use AppBundle\Controller\BaseController;
 
-class DefaultController extends FOSRestController
+class DefaultController extends BaseController
 {
     /**
      * @Rest\Get("/search/{fuel}/{latitud}/{longitud}")
@@ -21,11 +22,11 @@ class DefaultController extends FOSRestController
         //$longitud = '-2,509361';
         //http://fuel.dev/app_dev.php/search/G95/42,846028/-2,509361
 
-        $root = dirname(__FILE__)."/../../../Fuel/$fuel.json";
-        $jsonitem = file_get_contents($root);
+        //$root = dirname(__FILE__)."/../../../web/Fuel/$fuel.json";
+        $root = $this->getUploadedRootDir(). "/". $fuel . ".json";
+        $jsonitem = $this->getContent($root);
+
         $objitems = json_decode($jsonitem);
-
-
         $findBy = function($latitud, $longitud) use ($objitems) {
             foreach ($objitems as $friend) {
                 if ($friend->latitud == $latitud && $friend->longitud == $longitud){
