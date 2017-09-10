@@ -45,6 +45,3 @@ services:
         class: AppBundle\Services\ExtractFuelPrice
         public: true
 
-    AppBundle\EventListener\UserSubscriber:
-            tags:
-                - { name: doctrine.event_subscriber, connection: default }
