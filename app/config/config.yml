@@ -79,6 +79,14 @@ nelmio_cors:
         hosts: []
         origin_regex: false
 
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: AppBundle\Entity\User
+    from_email:
+        address: "%mailer_user%"
+        sender_name: "%mailer_user%"
+
 # FOSRest Configuration
 fos_rest:
     serializer:
