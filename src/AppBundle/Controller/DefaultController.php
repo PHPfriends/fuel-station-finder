@@ -26,19 +26,29 @@ class DefaultController extends BaseController
         $root = $this->getUploadedRootDir(). "/". $fuel . ".json";
         $jsonitem = $this->getContent($root);
 
-        $objitems = json_decode($jsonitem);
-        $findBy = function($latitud, $longitud) use ($objitems) {
-            foreach ($objitems as $friend) {
-                if ($friend->latitud == $latitud && $friend->longitud == $longitud){
-                    return $friend;
-                }
+        $longitud = floatval($longitud);
+        $latitud = floatval($latitud);
+
+        $result = [];
+        $items = json_decode($jsonitem);
+        foreach ($items as $item) {
+            if ($this->isNear($latitud, $longitud, $item)) {
+                $result[] = get_object_vars($item);
             }
-
-            return new \stdClass();
-        };
-
-        $result = get_object_vars($findBy($latitud, $longitud));
+        }
 
         return $result;
+    }
+
+    private function isNear($lat, $long, $item)
+    {
+        $radiusLat = 0.015;
+        $radiusLong = 0.015;
+
+        $latitude = floatval(str_replace(',', '.', $item->latitud));
+        $longitude = floatval(str_replace(',', '.', $item->longitud));
+
+        return ($latitude >= ($lat - $radiusLat)) && ($longitude >= ($long - $radiusLong)) &&
+                ($latitude <= ($lat + $radiusLat)) && ($longitude <= ($long + $radiusLong));
     }
 }
