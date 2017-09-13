@@ -19,3 +19,5 @@ parameters:
     secret: ThisTokenIsNotSoSecretChangeIt
 
     google_maps_api: YourKeyHere
+
+    mailer_user: whatever@email.com
