@@ -22,6 +22,9 @@ class DefaultController extends BaseController
         //$longitud = '-2,509361';
         //http://fuel.dev/app_dev.php/search/G95/42,846028/-2,509361
 
+        $latitud = floatval(str_replace(',', '.', $latitud));
+        $longitud = floatval(str_replace(',', '.', $longitud));
+
         //$root = dirname(__FILE__)."/../../../web/Fuel/$fuel.json";
         $root = $this->getUploadedRootDir(). "/". $fuel . ".json";
         $jsonitem = $this->getContent($root);
