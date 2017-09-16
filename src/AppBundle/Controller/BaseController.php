@@ -13,7 +13,7 @@ use FOS\RestBundle\View\View;
 class BaseController extends FOSRestController
 {
 
-    protected function getUploadDir()
+    public function getUploadDir()
     {
         return "Fuel";
     }

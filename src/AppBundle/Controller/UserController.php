@@ -14,16 +14,23 @@ use AppBundle\Controller\BaseController;
 
 class UserController extends BaseController
 {
+    protected $em;
+    protected $repository;
+
+    public function __construct()
+    {
+
+    }
+
     /**
      * @Rest\Post("user/create")
      */
     public function createUserAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
+        $this->repository = $this->getDoctrine()->getRepository(User::class);
 
-        $repository = $this->getDoctrine()->getRepository(User::class);
-
-        $user = $repository->findOneBy(
+        $user = $this->repository->findOneBy(
             array('email' => $request->request->get('email'))
         );
 
@@ -40,5 +47,6 @@ class UserController extends BaseController
         $em->flush();
 
         return $user;
+        //return 'r';
     }
 }
