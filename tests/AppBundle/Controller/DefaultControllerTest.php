@@ -9,7 +9,6 @@ class DefaultControllerTest extends WebTestCase
 {
 
 
-
     /*public function testIndex()
     {
         $client = static::createClient();
@@ -23,7 +22,12 @@ class DefaultControllerTest extends WebTestCase
     public function testGetAction()
     {
         $testDefaultController = new DefaultController();
-        $result = $testDefaultController->getAction("G95", "42,846028", "-2,509361");
-        $this->assertEquals(array(), $result );
+        $result = $testDefaultController->getAction("G95", "39.43705", "-0.46546");
+        //$this->assertEquals(array(), $result );
+        //$this->assertArrayHasKey('address', $result);
+        //dump(count($result));
+        $this->assertInternalType('array',$result);
+        $this->assertGreaterThan(1, $result);
+
     }
 }
