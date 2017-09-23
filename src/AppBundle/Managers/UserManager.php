@@ -24,10 +24,21 @@ class UserManager
        return $this->repository->findOneBy($criteria);
    }
 
-   public function updateUser(User $user, $andFlush = true){
+   public function save(User $user, $andFlush = true){
        $this->entityManager->persist($user);
        if($andFlush){
            $this->entityManager->flush($user);
        }
    }
+
+   public function create($request){
+       $user = new User();
+       $user->setEmail($request->request->get('email'));
+       $user->setLastLogin(new \DateTime());
+       $user->setUsername($request->request->get('username'));
+       $user->setPassword($request->request->get('password'));
+
+       return $user;
+   }
+
 }
